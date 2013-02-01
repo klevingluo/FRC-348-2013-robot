@@ -3,7 +3,9 @@ package edu.wpi.first.wpilibj.templates.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.OI;
-import edu.wpi.first.wpilibj.templates.subsystems.ExampleSubsystem;
+import edu.wpi.first.wpilibj.templates.subsystems.Climber;
+import edu.wpi.first.wpilibj.templates.subsystems.Drivetrain;
+import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -13,9 +15,15 @@ import edu.wpi.first.wpilibj.templates.subsystems.ExampleSubsystem;
  */
 public abstract class CommandBase extends Command {
 
+    public static final int FEEDER_SPEED = 1;
+    public static final int SHOOTER_SPEED = 1;
+    public static final int CLIMBER_SPEED = 1;
+    
     public static OI oi;
     // Create a single static instance of all of your subsystems
-    public static ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+    public static Drivetrain drivetrain = new Drivetrain();
+    public static Climber climber = new Climber();
+    public static Shooter shooter = new Shooter();
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
@@ -26,7 +34,7 @@ public abstract class CommandBase extends Command {
         oi = new OI();
 
         // Show what command your subsystem is running on the SmartDashboard
-        SmartDashboard.putData(exampleSubsystem);
+        SmartDashboard.putData(drivetrain);
     }
 
     public CommandBase(String name) {
