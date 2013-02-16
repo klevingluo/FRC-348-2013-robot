@@ -11,21 +11,20 @@ package edu.wpi.first.wpilibj.templates.commands;
 public class Feed extends CommandBase {
     
     public Feed() {
-        requires(shooter);
+        requires(feeder);
     }
 
     protected void initialize() {
+        feeder.feed(FEEDER_SPEED);
     }
 
     protected void execute() {
-        if(oi.leftStick.getRawButton(7)) {
-            while(shooter.getSwitchValue()) {
-                    shooter.feed(FEEDER_SPEED);
-            }
-            while(!shooter.getSwitchValue()) {
-                shooter.feed(FEEDER_SPEED);
-            }
-        }
+        //if(oi.leftStick.getRawButton(3)) {
+            //while(shooter.getSwitchValue()) {
+            //}
+            //while(!shooter.getSwitchValue()) {
+            //    shooter.feed(FEEDER_SPEED);
+            //}
     }
 
     protected boolean isFinished() {
@@ -33,11 +32,11 @@ public class Feed extends CommandBase {
     }
 
     protected void end() {
-        shooter.feed(0);
+        feeder.feed(0);
     }
 
     protected void interrupted() {
-        shooter.feed(0);
+        feeder.feed(0);
     }
     
 }

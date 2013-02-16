@@ -10,21 +10,16 @@ package edu.wpi.first.wpilibj.templates.commands;
  */
 public class FeedHopper extends CommandBase{
 
-    protected void initialize() {
+    public FeedHopper() {
         requires(hopper);
+    }
+    
+    protected void initialize() {
+        hopper.feed(HOPPER_FEEDER_SPEED);
     }
 
     protected void execute() {
-        if (oi.rightStick.getRawButton(3)) {
-            while(hopper.getSwitchValue()) {
-                hopper.feed(HOPPER_FEEDER_SPEED);
-            }
-            while(!hopper.getSwitchValue()) {
-                hopper.feed(HOPPER_FEEDER_SPEED);
-            }
-        } else {
-            hopper.stop();
-        }
+
     }
 
     protected boolean isFinished() {
@@ -32,9 +27,11 @@ public class FeedHopper extends CommandBase{
     }
 
     protected void end() {
+        hopper.stop();
     }
 
     protected void interrupted() {
+        hopper.stop();
     }
     
 }

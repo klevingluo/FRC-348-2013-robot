@@ -11,8 +11,11 @@ package edu.wpi.first.wpilibj.templates.commands;
 
 public class Current extends CommandBase{
 
-    protected void initialize() {
+    public Current() {
         requires(shooter);
+    }
+    
+    protected void initialize() {
     }
 
     protected void execute() {

@@ -17,9 +17,7 @@ import edu.wpi.first.wpilibj.templates.commands.Shoot;
  */
 public class Shooter extends Subsystem {
 
-    Jaguar feederMotor = new Jaguar(RobotMap.FRISBEE_FEEDER_SHOOTER);
     Jaguar shooterMotor = new Jaguar(RobotMap.FRISBEE_SHOOTER);
-    DigitalInput feederSwitch = new DigitalInput(RobotMap.FEEDER_SHOOTER_SWITCH);
     CANJaguar shootSpeed;
     boolean doNothing = false;
     
@@ -41,19 +39,6 @@ public class Shooter extends Subsystem {
     
     public void reverseShoot(double speed) {
         shooterMotor.set(-speed);
-    }
-    
-    public void feed(double speed) {
-        while(feederSwitch.get()) {
-                feederMotor.set(speed);
-        }
-        while(!feederSwitch.get()) {
-            feederMotor.set(speed);
-        }
-    }
-    
-    public boolean getSwitchValue() {
-        return feederSwitch.get();
     }
     
     public double getCurrent() {

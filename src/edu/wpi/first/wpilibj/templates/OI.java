@@ -3,7 +3,6 @@ package edu.wpi.first.wpilibj.templates;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -17,9 +16,11 @@ public class OI {
      public Joystick leftStick = new Joystick(1);
      public Joystick rightStick = new Joystick(2);
      
-     public Button shoot = new JoystickButton(leftStick, 7);
+     Button shoot = new BackwardsButton(rightStick, 1);
+     Button feed = new BackwardsButton(leftStick, 3);
+     Button index = new BackwardsButton(leftStick, 1);
     // Button button = new JoystickButton(stick, buttonNumber);
-    
+     
     // Another type of button you can create is a DigitalIOButton, which is
     // a button or switch hooked up to the cypress module. These are useful if
     // you want to build a customized operator interface.

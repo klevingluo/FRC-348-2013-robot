@@ -10,23 +10,25 @@ package edu.wpi.first.wpilibj.templates.commands;
  */
 public class Shoot extends CommandBase {
     
-    private double currentLimit = 10;
+    //private double currentLimit = 10;
 
     public Shoot() {
         requires(shooter);
     }
     
     protected void initialize() {
+        shooter.shoot(SHOOTER_SPEED);
     }
 
     protected void execute() {
-        if(oi.leftStick.getRawButton(1)) {
-            shooter.shoot(SHOOTER_SPEED);
-        }
+        //if(oi.rightStick.getRawButton(1)) {
+        //} else {
+        //    shooter.shoot(0);
+        //}
     }
 
     protected boolean isFinished() {
-        return shooter.getCurrent() > currentLimit ;
+        return false;//shooter.getCurrent() > currentLimit ;
     }
 
     protected void end() {

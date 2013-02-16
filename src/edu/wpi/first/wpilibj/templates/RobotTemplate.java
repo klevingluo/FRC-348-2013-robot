@@ -30,11 +30,6 @@ import edu.wpi.first.wpilibj.templates.commands.Shoot;
 public class RobotTemplate extends IterativeRobot {
     
     Command drive;
-    Command correctDirection;
-    Command shoot;
-    Command feed;
-    Command feedHopper;
-    Command current;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -43,11 +38,6 @@ public class RobotTemplate extends IterativeRobot {
     public void robotInit() {
         // instantiate the command used for the autonomous period
         drive = new Drive();
-        correctDirection = new CorrectDirection();
-        shoot = new Shoot();
-        feed = new Feed();
-        feedHopper = new FeedHopper();
-        current = new Current();
         
 
         // Initialize all subsystems
@@ -79,9 +69,10 @@ public class RobotTemplate extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         //System.out.println(CorrectDirection.drivetrain.getText());
+        CommandBase.oi.feed.whileHeld(new Feed());
+        CommandBase.oi.index.whileHeld(new FeedHopper());
+        CommandBase.oi.shoot.whileHeld(new Shoot());
         drive.start();
-        shoot.start();
-        current.start();
     }
     
     /**
