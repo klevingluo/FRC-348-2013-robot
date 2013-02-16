@@ -18,7 +18,14 @@ public class Feed extends CommandBase {
     }
 
     protected void execute() {
-        shooter.feed(FEEDER_SPEED);
+        if(oi.leftStick.getRawButton(7)) {
+            while(shooter.getSwitchValue()) {
+                    shooter.feed(FEEDER_SPEED);
+            }
+            while(!shooter.getSwitchValue()) {
+                shooter.feed(FEEDER_SPEED);
+            }
+        }
     }
 
     protected boolean isFinished() {

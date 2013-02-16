@@ -17,10 +17,8 @@ import edu.wpi.first.wpilibj.templates.commands.Drive;
  */
 public class Drivetrain extends Subsystem{
 
-    public Jaguar leftMotorFront = new Jaguar(RobotMap.LEFT_DRIVE_FRONT);
-    public Jaguar leftMotorBack = new Jaguar(RobotMap.LEFT_DRIVE_BACK);
-    public Jaguar rightMotorFront = new Jaguar(RobotMap.RIGHT_DRIVE_FRONT);
-    public Jaguar rightMotorBack = new Jaguar(RobotMap.RIGHT_DRIVE_BACK);
+    public Jaguar leftDrive = new Jaguar(RobotMap.LEFT_DRIVE);
+    public Jaguar rightDrive = new Jaguar(RobotMap.RIGHT_DRIVE);
     
     public byte[] buffer = new byte[1];
     
@@ -31,10 +29,8 @@ public class Drivetrain extends Subsystem{
     }
     
     public void drive(double leftSpeed, double rightSpeed) {
-        leftMotorFront.set(leftSpeed);
-        leftMotorBack.set(leftSpeed);
-        rightMotorFront.set(rightSpeed);
-        rightMotorBack.set(rightSpeed);
+        leftDrive.set(leftSpeed);
+        rightDrive.set(rightSpeed);
     }
     
     public byte getText() {
@@ -48,13 +44,9 @@ public class Drivetrain extends Subsystem{
         return buffer[0];
     }
     
-    public double getAngle() {
-        long theta = 0;
-        displacement.read(RobotMap.MOUSE_ADDRESS, 7, buffer);
-        for(int i = 0; i < buffer.length; i++) {
-            theta = (theta + buffer[i]) << 8;
-        }
-        return (double)theta;
+    public int getVeer() {
+        displacement.read(RobotMap.MOUSE_ADDRESS, 1, buffer);
+        return (int)buffer[0];
     }
     
     public void correct(double leftSpeed, double rightSpeed, double angle) {

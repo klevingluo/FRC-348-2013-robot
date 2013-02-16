@@ -3,8 +3,8 @@ package edu.wpi.first.wpilibj.templates.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.OI;
-import edu.wpi.first.wpilibj.templates.subsystems.Climber;
 import edu.wpi.first.wpilibj.templates.subsystems.Drivetrain;
+import edu.wpi.first.wpilibj.templates.subsystems.Hopper;
 import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 
 /**
@@ -17,13 +17,13 @@ public abstract class CommandBase extends Command {
 
     public static final int FEEDER_SPEED = 1;
     public static final int SHOOTER_SPEED = 1;
-    public static final int CLIMBER_SPEED = 1;
+    public static final int HOPPER_FEEDER_SPEED = 1;
     
     public static OI oi;
     // Create a single static instance of all of your subsystems
-    public static Drivetrain drivetrain = new Drivetrain();
-    public static Climber climber = new Climber();
-    public static Shooter shooter = new Shooter();
+    public static Drivetrain drivetrain;
+    public static Shooter shooter;
+    public static Hopper hopper;
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
@@ -32,6 +32,10 @@ public abstract class CommandBase extends Command {
         // yet. Thus, their requires() statements may grab null pointers. Bad
         // news. Don't move it.
         oi = new OI();
+        
+         drivetrain = new Drivetrain();
+         shooter = new Shooter();
+         hopper = new Hopper();
 
         // Show what command your subsystem is running on the SmartDashboard
         SmartDashboard.putData(drivetrain);

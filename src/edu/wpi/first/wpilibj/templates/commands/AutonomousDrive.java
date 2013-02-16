@@ -4,35 +4,37 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
  * @author Programmer
  */
-public class Drive extends CommandBase {
+public class AutonomousDrive extends CommandBase {
     
-    public Drive() {
-        requires(drivetrain);
-    }
+    Timer time = new Timer();
     
     protected void initialize() {
     }
 
     protected void execute() {
-        drivetrain.drive(oi.leftStick.getAxis(Joystick.AxisType.kY),oi.rightStick.getAxis(Joystick.AxisType.kY));
+        time.start();
     }
 
     protected boolean isFinished() {
-        return false;
+        if(time.get() >= 30000000) {
+            time.stop();
+            time.reset();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     protected void end() {
-        drivetrain.drive(0, 0);
     }
 
     protected void interrupted() {
-        drivetrain.drive(0, 0);
     }
     
 }

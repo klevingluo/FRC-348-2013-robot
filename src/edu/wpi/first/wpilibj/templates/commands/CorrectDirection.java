@@ -11,6 +11,12 @@ package edu.wpi.first.wpilibj.templates.commands;
  */
 public class CorrectDirection extends CommandBase {
 
+    private double ratio = 1; // the factor of left power to right power for straight driving
+    private double speed = 0; // the robot's current default left speed
+    private static final double RATIO_INCREMENT = 0.001; // the increment with which to adjust the ratio for straigt driving
+    private static final double SPEED_INCREMENT = 0.01;
+    private static final double MAX_SPEED = 0.5;         // stops testing after this speed is reached  
+    
     public CorrectDirection() {
         requires(drivetrain);
     }
@@ -19,19 +25,22 @@ public class CorrectDirection extends CommandBase {
     }
 
     protected void execute() {
-        double theta = drivetrain.getAngle();
-        if(theta < 0) {
-            drivetrain.drive(oi.getLeftYAxis(), oi.getRightYAxis()*theta);
-        } else {
-            drivetrain.drive(oi.getLeftYAxis()*theta, oi.getRightYAxis());
+        double veer = drivetrain.getVeer();
+        if(veer > 1) {
+            ratio += RATIO_INCREMENT;
+        } else if (veer < 1){
+            ratio -= RATIO_INCREMENT;
         }
+        speed += SPEED_INCREMENT;
+        drivetrain.drive(speed, speed*ratio);
     }
 
     protected boolean isFinished() {
-        return false;
+        return (speed > MAX_SPEED);
     }
 
     protected void end() {
+        // save the ratio value somewhere
     }
 
     protected void interrupted() {

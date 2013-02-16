@@ -2,6 +2,8 @@
 package edu.wpi.first.wpilibj.templates;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -14,6 +16,8 @@ public class OI {
     // number it is.
      public Joystick leftStick = new Joystick(1);
      public Joystick rightStick = new Joystick(2);
+     
+     public Button shoot = new JoystickButton(leftStick, 7);
     // Button button = new JoystickButton(stick, buttonNumber);
     
     // Another type of button you can create is a DigitalIOButton, which is
@@ -40,13 +44,5 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
-     
-     public double getLeftYAxis() {
-        return leftStick.getAxis(Joystick.AxisType.kY);
-    }
-    
-    public double getRightYAxis() {
-        return rightStick.getAxis(Joystick.AxisType.kY);
-    }
 }
 

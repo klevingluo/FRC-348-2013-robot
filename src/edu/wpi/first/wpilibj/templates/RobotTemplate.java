@@ -14,7 +14,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.CorrectDirection;
+import edu.wpi.first.wpilibj.templates.commands.Current;
 import edu.wpi.first.wpilibj.templates.commands.Drive;
+import edu.wpi.first.wpilibj.templates.commands.Feed;
+import edu.wpi.first.wpilibj.templates.commands.FeedHopper;
+import edu.wpi.first.wpilibj.templates.commands.Shoot;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,6 +31,10 @@ public class RobotTemplate extends IterativeRobot {
     
     Command drive;
     Command correctDirection;
+    Command shoot;
+    Command feed;
+    Command feedHopper;
+    Command current;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -36,6 +44,11 @@ public class RobotTemplate extends IterativeRobot {
         // instantiate the command used for the autonomous period
         drive = new Drive();
         correctDirection = new CorrectDirection();
+        shoot = new Shoot();
+        feed = new Feed();
+        feedHopper = new FeedHopper();
+        current = new Current();
+        
 
         // Initialize all subsystems
         CommandBase.init();
@@ -58,7 +71,6 @@ public class RobotTemplate extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        drive.cancel();
     }
 
     /**
@@ -68,6 +80,8 @@ public class RobotTemplate extends IterativeRobot {
         Scheduler.getInstance().run();
         //System.out.println(CorrectDirection.drivetrain.getText());
         drive.start();
+        shoot.start();
+        current.start();
     }
     
     /**

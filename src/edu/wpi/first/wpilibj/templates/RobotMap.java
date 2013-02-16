@@ -9,15 +9,16 @@ package edu.wpi.first.wpilibj.templates;
 public class RobotMap {
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
-    public static final int LEFT_DRIVE_FRONT = 1;
-    public static final int LEFT_DRIVE_BACK = 2;
-    public static final int RIGHT_DRIVE_FRONT = 3;
-    public static final int RIGHT_DRIVE_BACK = 4;
-    public static final int FRISBEE_SHOOTER = 5;
-    public static final int FRISBEE_FEEDER = 6;
-    public static final int LEFT_CLIMB = 7;
-    public static final int RIGHT_CLIMB = 8;
+    public static final int LEFT_DRIVE = 1;
+    public static final int RIGHT_DRIVE = 2;
+    public static final int FRISBEE_SHOOTER = 3;
+    public static final int FRISBEE_FEEDER_SHOOTER = 4;
+    public static final int FRISBEE_FEEDER_HOPPER = 5;
+    public static final int FRISBEE_SHOOTER_CAN = 8;
     
+    
+    public static final int FEEDER_SHOOTER_SWITCH = 1;
+    public static final int FEEDER_HOPPER_SWITCH = 2;
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
     // public static final int rangefinderPort = 1;

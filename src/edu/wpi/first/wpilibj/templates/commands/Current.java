@@ -4,23 +4,19 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
-
 /**
  *
  * @author Programmer
  */
-public class Drive extends CommandBase {
-    
-    public Drive() {
-        requires(drivetrain);
-    }
-    
+
+public class Current extends CommandBase{
+
     protected void initialize() {
+        requires(shooter);
     }
 
     protected void execute() {
-        drivetrain.drive(oi.leftStick.getAxis(Joystick.AxisType.kY),oi.rightStick.getAxis(Joystick.AxisType.kY));
+        System.out.print(shooter.getCurrent());
     }
 
     protected boolean isFinished() {
@@ -28,11 +24,11 @@ public class Drive extends CommandBase {
     }
 
     protected void end() {
-        drivetrain.drive(0, 0);
     }
 
     protected void interrupted() {
-        drivetrain.drive(0, 0);
     }
+
+    
     
 }
